@@ -12,42 +12,40 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
-	switch(playerSelection, computerSelection) {
-		// All the playerSelection = rock cases
-		case playerSelection = 'rock', computerSelection = 'paper':
-			console.log('Computer Wins');
-			break;
-		case playerSelection = 'rock', computerSelection = 'scissors':
-			console.log('Player Wins');
-			break;
-		case playerSelection = 'rock', computerSelection = 'rock':
-			console.log('Draw');
-			break;
+	// All the playerSelection == rock cases
+	if (playerSelection == 'rock' && computerSelection == 'paper') {
+		console.log('Computer Wins');
+	} else if (playerSelection == 'rock' && computerSelection == 'scissors') {
+		console.log('Player Wins');
+	} else if (playerSelection == 'rock' && computerSelection == 'rock') {
+		console.log('Draw');
+	}
 
-		// All the playerSelection = paper cases
-		case playerSelection = 'paper', computerSelection = 'paper':
-			console.log('Draw');
-			break;
-		case playerSelection = 'paper', computerSelection = 'scissors':
-			console.log('Computer Wins');
-			break;
-		case playerSelection = 'paper', computerSelection = 'rock':
-			console.log('Player Wins');
-			break;
+	// All the playerSelection == paper cases
+	else if (playerSelection == 'paper' && computerSelection == 'paper') {
+		console.log('Draw');
+	} else if (playerSelection == 'paper' && computerSelection == 'scissors') {
+		console.log('Computer Wins');
+	} else if (playerSelection == 'paper' && computerSelection == 'rock') {
+		console.log('Player Wins');
+	}
 
-		//All the playerSelection = scissors cases
-		case playerSelection = 'scissors', computerSelection = 'paper':
-			console.log('Player Wins');
-			break;
-		case playerSelection = 'scissors', computerSelection = 'scissors':
-			console.log('Draw');
-			break;
-		case playerSelection = 'scissors', computerSelection = 'rock':
-			console.log('Computer Wins');
-			break;
+	//All the playerSelection == scissors cases
+	else if (playerSelection == 'scissors' && computerSelection == 'paper') {
+		console.log('Player Wins');
+	} else if (playerSelection == 'scissors' && computerSelection == 'scissors') {
+		console.log('Draw');
+	} else if (playerSelection == 'scissors' && computerSelection == 'rock') {
+		console.log('Computer Wins');
+	}
+
+	else {
+		console.log('Not a valid input');
 	}
 }
 
-const playerSelection = 'scissors'
+let playerInput = window.prompt('Rock, Paper or Scissors');
+const playerSelection = playerInput.toLowerCase();
 const computerSelection = computerPlay();
+console.log(`Computer Chose ${computerSelection}`);
 console.log(playRound(playerSelection, computerSelection));
