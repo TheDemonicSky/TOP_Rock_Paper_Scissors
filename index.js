@@ -1,3 +1,26 @@
+function game() {
+	let compScore = 0;
+	let playerScore = 0;
+	for (let i = 0; i < 5; i++) {
+		const playerSelection = playerInput();
+		const computerSelection = computerPlay();
+		console.log(`Computer Chose ${computerSelection}`);
+		let roundWinner = playRound(playerSelection, computerSelection);
+		if (roundWinner == 'computer') {
+			compScore++;
+		} else if (roundWinner == 'player') {
+			playerScore++;
+		};
+	};
+	if (compScore > playerScore) {
+		console.log(`The computer won with a score of ${compScore}/5`);
+	} else if (compScore < playerScore) {
+		console.log(`The player won with a score of ${playerScore}/5`);
+	} else {
+		console.log('Draw')
+	}
+};
+
 function computerPlay() {
 	let randomInt = Math.floor((Math.random() * 3) + 1);
 	let computerChoice;
@@ -12,40 +35,49 @@ function computerPlay() {
 }
 
 function playRound(playerSelection, computerSelection) {
+	let winner;
 	// All the playerSelection == rock cases
 	if (playerSelection == 'rock' && computerSelection == 'paper') {
-		console.log('Computer Wins');
+		winner = 'computer';
 	} else if (playerSelection == 'rock' && computerSelection == 'scissors') {
-		console.log('Player Wins');
+		winner = 'player';
 	} else if (playerSelection == 'rock' && computerSelection == 'rock') {
-		console.log('Draw');
+		winner = 'draw';
 	}
 
 	// All the playerSelection == paper cases
 	else if (playerSelection == 'paper' && computerSelection == 'paper') {
-		console.log('Draw');
+		winner = 'draw';
 	} else if (playerSelection == 'paper' && computerSelection == 'scissors') {
-		console.log('Computer Wins');
+		winner = 'computer';
 	} else if (playerSelection == 'paper' && computerSelection == 'rock') {
-		console.log('Player Wins');
+		winner = 'player';
 	}
 
 	//All the playerSelection == scissors cases
 	else if (playerSelection == 'scissors' && computerSelection == 'paper') {
-		console.log('Player Wins');
+		winner = 'player';
 	} else if (playerSelection == 'scissors' && computerSelection == 'scissors') {
-		console.log('Draw');
+		winner = 'draw';
 	} else if (playerSelection == 'scissors' && computerSelection == 'rock') {
-		console.log('Computer Wins');
+		winner = 'computer';
 	}
 
 	else {
 		console.log('Not a valid input');
 	}
+
+	return(winner);
 }
 
-let playerInput = window.prompt('Rock, Paper or Scissors');
-const playerSelection = playerInput.toLowerCase();
-const computerSelection = computerPlay();
-console.log(`Computer Chose ${computerSelection}`);
-console.log(playRound(playerSelection, computerSelection));
+function capitalizeFirstLetter(string) {
+	return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+function playerInput() {
+	let playerInput = window.prompt('Rock, Paper or Scissors');
+	let playerSelection = playerInput.toLowerCase();
+	return(playerSelection);
+}
+
+game();
